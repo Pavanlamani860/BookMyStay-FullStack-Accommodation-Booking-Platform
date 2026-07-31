@@ -1,0 +1,149 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="row">
+  <div class="col-8 offset-2">
+    <br />
+
+    <h3>Create a new Listing</h3>
+    <form
+      method="post"
+      action="/listings"
+      novalidate
+      class="needs-validation"
+      enctype="multipart/form-data"
+    >
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input
+          name="listing[title]"
+          placeholder="enter catchy title"
+          type="text"
+          class="form-control"
+          required
+        />
+        <div class="valid-feedback">title looks good!</div>
+      </div>
+
+      <button
+      type="button"
+      id="generateDesc"
+      class="btn btn-outline-dark btn-sm mb-2">
+      ✨ Generate Description
+     </button>
+      <div class="mb-3">
+       <label for="description" class="form-label">Description</label>
+        <textarea
+          name="listing[description]"
+          placeholder="enter description"
+          class="form-control"
+          required
+        ></textarea>
+        <div class="invalid-feedback">Please provide short description</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="image" class="form-label">Upload Image</label>
+        <input
+          name="listing[image]"
+          type="file"
+          class="form-control"
+          required
+        />
+      </div>
+
+      <div class="row">
+        <div class="mb-3 col-4">
+          <label for="price" class="form-label">Price</label>
+          <input
+            name="listing[price]"
+            placeholder="2000"
+            type="text"
+            class="form-control"
+            required
+          />
+          <div class="invalid-feedback">Price should be valid</div>
+        </div>
+
+        <div class="mb-3 col-8">
+          <label for="country" class="form-label">Country</label>
+          <input
+            name="listing[country]"
+            placeholder="India"
+            type="text"
+            class="form-control"
+            required
+          />
+          <div class="invalid-feedback">Country name should be valid</div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="location" class="form-label">Location</label>
+        <input
+          name="listing[location]"
+          placeholder="mysore"
+          type="text"
+          class="form-control"
+          required
+        />
+        <div class="invalid-feedback">Location should be valid</div>
+      </div>
+
+     <div class="mb-3">
+  <label for="category" class="form-label">Category</label>
+  <select
+    name="listing[category]"
+    class="form-select"
+    required
+  >
+    <option value="" disabled selected>Select a category</option>
+
+    <% categories.forEach(category => { %>
+      <option value="<%= category.name %>">
+        <%= category.name %>
+      </option>
+    <% }) %>
+
+  </select>
+  <div class="invalid-feedback">Category should be valid</div>
+</div>
+
+
+      <div class="mb-3">
+        <label for="amenities" class="form-label">Amenities</label>
+        <input
+          name="listing[amenities]"
+          placeholder="enter amenities"
+          type="text"
+          class="form-control"
+          required
+        />
+        <div class="invalid-feedback">provide valid amenities</div>
+      </div>
+
+      <button type="submit" class="btn btn-dark">create Listing</button>
+    </form>
+    <br />
+  </div>
+</div>
+
+<script>
+  document.getElementById("generateDesc").addEventListener("click", async () => {
+  
+    const title = document.querySelector('[name="listing[title]"]').value;
+    const location = document.querySelector('[name="listing[location]"]').value;
+    const category = document.querySelector('[name="listing[category]"]').value;
+    const amenities = document.querySelector('[name="listing[amenities]"]').value;
+  
+    const res = await fetch("/ai/generate-description", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ title, location, category, amenities }),
+    });
+  
+    const data = await res.json();
+  
+    document.querySelector('[name="listing[description]"]').value =
+      data.description;
+  });
+  </script>

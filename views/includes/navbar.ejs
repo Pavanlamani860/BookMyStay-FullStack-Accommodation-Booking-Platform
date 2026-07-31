@@ -1,0 +1,97 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="navbar-nav">
+        <a class="nav-link" href="/listings">Explore</a>
+      </div>
+
+      <div class="navbar-nav ms-auto">
+         <a class="nav-link" href="/listings/new">Air Your Home</a>
+       <% if (!currUser) { %>
+          <a class="nav-link" href="/signup"><b>Sign up </b></a>
+          <a class="nav-link" href="/login"><b>log in </b></a>
+      <% } %>
+      <% if (currUser) { %>
+        <button 
+        class="btn btn-light dropdown-toggle rounded-pill"
+        type="button"
+        data-bs-toggle="dropdown"
+      >
+        ☰ 👤
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end">
+
+        <li>
+          <a class="dropdown-item" href="/profile">
+            My Profile
+          </a>
+        </li>
+
+        <li>
+          <a class="dropdown-item" href="/profile/listings">
+            My Listings
+          </a>
+        </li>
+
+        <li>
+          <a class="dropdown-item" href="/profile/edit">
+            Edit Profile
+          </a>
+        </li>
+
+        <li><hr class="dropdown-divider"></li>
+
+        <li>
+          <a class="dropdown-item text-danger" href="/logout">
+            Logout
+          </a>
+        </li>
+
+      </ul>
+
+    </div>
+    <% } %>
+    </div>
+    </div>
+
+
+  <!-- Airbnb-style center search -->
+<form action="/listings" method="GET" class="airbnb-navbar-search">
+  <input type="hidden" name="country" value="India">
+  <div class="airbnb-search-pill">
+   <input
+    type="text"
+    name="location"
+    placeholder="Search destinations"
+    class="search-where"
+    value="<%= typeof location !== 'undefined' ? location : '' %>"
+  />
+
+
+    <span class="divider"></span>
+
+    <!-- <input
+      type="text"
+      name="date"
+      placeholder="Add dates"
+      class="search-date"
+      onfocus="this.type='date'"
+      onblur="this.type='text'"
+    /> -->
+
+    <button type="submit" class="search-btn">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+  </div>
+</form>
+
+</nav>

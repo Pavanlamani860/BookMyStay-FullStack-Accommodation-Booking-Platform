@@ -1,0 +1,174 @@
+body {
+  background-color: antiquewhite;
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  flex: 1;
+}
+
+.fa-compass {
+  color: #fe424d;
+  size: 3rem;
+}
+
+.nav-bar {
+  background-color: white;
+}
+
+.navbar {
+  min-height: 70px !important;
+  padding-top: 0.6rem !important;
+  padding-bottom: 0.6rem !important;
+  margin-bottom: 2rem !important;
+}
+
+/* footer styling */
+.f-info-links a {
+  text-decoration: none;
+  color: #222222;
+}
+
+.f-info-links a:hover {
+  text-decoration: underline;
+}
+
+.f-info-links,
+.f-info-socials {
+  width: 100%;
+}
+
+.f-info-socials {
+  margin-right: 2rem;
+  font-size: 1.4rem;
+}
+
+.f-info {
+  text-align: center;
+  height: 8rem;
+  background-color: #ebebeb;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: space-evenly;
+}
+/* card styling */
+
+.listing-card {
+  border: none !important;
+  margin-bottom: 2rem;
+}
+
+.card-img-top {
+  width: 100% !important;
+  height: 290px !important;
+  object-fit: cover !important;
+  border-radius: 10px 10px !important;
+}
+
+.card-body {
+  padding: 0 !important;
+}
+
+/* card hovering effect */
+.card-img-overlay {
+  opacity: 0;
+}
+.card-img-overlay:hover {
+  opacity: 0.2;
+  background-color: white;
+}
+
+/* show page */
+.show-img {
+  height: 40vh;
+}
+
+#map {
+  height: 300px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* navbar filtering and search styling */
+/* Center the search inside navbar */
+.airbnb-navbar-search {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Pill container */
+.airbnb-search-pill {
+  display: flex;
+  align-items: center;
+  height: 43px;
+  width: 420px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  padding: 0 8px 0 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* Inputs */
+.airbnb-search-pill input {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  background: transparent;
+}
+
+/* Where field */
+.search-where {
+  flex: 1;
+}
+
+/* Date field */
+.search-date {
+  width: 150px;
+}
+
+/* Divider */
+.divider {
+  width: 1px;
+  height: 22px;
+  background: #e0e0e0;
+  margin: 0 12px;
+}
+
+/* Search button */
+.search-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: #ff385c;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Subtle hover like Airbnb */
+.airbnb-search-pill:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* booking card style */
+.listing-main {
+  position: relative !important;
+}
+.booking-card {
+  position: sticky !important;
+  margin-top: 30px !important;
+  border-radius: 14px !important;
+  padding: 10px 10px;
+}
+
+.social-media-share {
+  margin-left: 187px !important;
+}

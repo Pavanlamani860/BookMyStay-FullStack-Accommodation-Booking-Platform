@@ -1,0 +1,25 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container mt-5">
+  <h2>My Profile</h2>
+
+  <div class="card p-4 mt-3">
+    <p>
+      <strong>Username:</strong>
+      <%= currUser.username %>
+    </p>
+
+    <p>
+      <strong>Email:</strong>
+      <%= currUser.email %>
+    </p>
+
+    <div class="mt-3">
+      <a href="/profile/edit" class="btn btn-outline-dark"> Edit Profile </a>
+      <a href="/profile/password" class="btn btn-outline-danger">
+        Change Password
+      </a>
+      <a href="/profile/listings" class="btn btn-outline-dark"> My Listings </a>
+    </div>
+  </div>
+</div>
