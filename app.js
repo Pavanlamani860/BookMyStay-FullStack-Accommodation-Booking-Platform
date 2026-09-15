@@ -1,6 +1,4 @@
-if (process.env.NODE_ENV != "production") {
-  require("dotenv").config();
-}
+require("dotenv").config();
 
 const livereload = require("livereload");
 const connectLiveReload = require("connect-livereload");
@@ -78,6 +76,8 @@ app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
   res.locals.currUser = req.user;
+
+  res.locals.razorpayKeyId = process.env.RAZORPAY_KEY_ID;
   next();
 });
 app.use("/", bookingRoutes);

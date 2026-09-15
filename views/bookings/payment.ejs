@@ -35,12 +35,73 @@
       <!-- PRICE -->
       <h4 class="fw-bold">Total: ₹ <%= booking.totalPrice %></h4>
 
-      <!-- PAYMENT BUTTON (Stripe later) -->
-      <button class="btn btn-danger w-100 mt-3" disabled>Pay Now</button>
-
+      <!-- RAZORPAY PAYMENT -->
+      <button id="pay-btn" class="btn btn-danger w-100 mt-3">
+        Pay ₹<%= booking.totalPrice %>
+      </button>
       <p class="text-center text-muted mt-2 mb-0">
-        Payment integration will be added next
+        Secure payment powered by Razorpay
       </p>
     </div>
   </div>
 </div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+  document.getElementById("pay-btn").onclick = async function (e) {
+    e.preventDefault();
+
+    const options = {
+      key: "<%= razorpayKeyId %>",
+
+      amount: "<%= booking.totalPrice * 100 %>",
+
+      currency: "INR",
+
+      name: "BookMyStay",
+
+      description: "Booking payment",
+
+      order_id: "<%= booking.razorpayOrderId %>",
+
+      handler: async function (response) {
+        try {
+          const result = await fetch(
+            "/bookings/<%= booking._id %>/verify-payment",
+            {
+              method: "POST",
+
+              headers: {
+                "Content-Type": "application/json",
+              },
+
+              body: JSON.stringify({
+                razorpay_payment_id: response.razorpay_payment_id,
+
+                razorpay_order_id: response.razorpay_order_id,
+
+                razorpay_signature: response.razorpay_signature,
+              }),
+            },
+          );
+
+          const data = await result.json();
+
+          if (data.success) {
+            window.location.href = "/bookings/<%= booking._id %>/success";
+          } else {
+            alert(data.message || "Payment verification failed");
+          }
+        } catch (error) {
+          console.error(error);
+
+          alert("Something went wrong while verifying payment.");
+        }
+      },
+    };
+
+    const razorpay = new Razorpay(options);
+    razorpay.open();
+  };
+</script>

@@ -1,0 +1,79 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="row mt-5">
+  <div class="col-lg-7 offset-lg-2">
+    <div class="card shadow-sm p-4 text-center">
+      <!-- SUCCESS ICON -->
+      <div class="mb-3">
+        <div
+          class="d-inline-flex justify-content-center align-items-center rounded-circle bg-success text-white"
+          style="width: 80px; height: 80px; font-size: 40px"
+        >
+          ✓
+        </div>
+      </div>
+
+      <!-- SUCCESS MESSAGE -->
+
+      <h2 class="fw-bold text-success">Payment Successful!</h2>
+
+      <p class="text-muted">Your booking has been confirmed successfully.</p>
+
+      <hr />
+
+      <!-- LISTING -->
+
+      <h4 class="fw-semibold"><%= booking.listing.title %></h4>
+
+      <p class="text-muted">
+        📍 <%= booking.listing.location %>, <%= booking.listing.country %>
+      </p>
+
+      <hr />
+
+      <!-- BOOKING DETAILS -->
+
+      <div class="text-start">
+        <p>
+          <strong>Check-in:</strong>
+          <%= booking.checkIn.toDateString() %>
+        </p>
+
+        <p>
+          <strong>Check-out:</strong>
+          <%= booking.checkOut.toDateString() %>
+        </p>
+
+        <p>
+          <strong>Guests:</strong>
+          <%= booking.guests %>
+        </p>
+
+        <p>
+          <strong>Amount Paid:</strong>
+          ₹<%= booking.totalPrice %>
+        </p>
+
+        <p>
+          <strong>Payment Status:</strong>
+
+          <span class="badge bg-success"> Paid </span>
+        </p>
+      </div>
+
+      <hr />
+
+      <!-- BOOKING CONFIRMATION -->
+
+      <p class="text-muted small">Booking ID: <%= booking._id %></p>
+
+      <!-- BUTTONS -->
+
+      <div class="d-grid gap-2">
+        <a href="/listings" class="btn btn-outline-secondary">
+          Back to Listings
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
