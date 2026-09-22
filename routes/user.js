@@ -4,6 +4,7 @@ const wrapAsync = require("../utils/wrapAsync.js");
 const user = require("../models/user.js");
 const passport = require("passport");
 const Listing = require("../models/listing");
+const Booking = require("../models/booking");
 
 router.get("/signup", (req, res) => {
   res.render("users/signup.ejs");
@@ -78,6 +79,20 @@ router.get("/profile/listings", async (req, res) => {
   });
 
   res.render("users/listings", { listings });
+});
+
+// My Bookings
+router.get("/profile/bookings", async (req, res) => {
+  if (!req.user) {
+    req.flash("error", "You must be logged in");
+    return res.redirect("/login");
+  }
+
+  const bookings = await Booking.find({
+    user: req.user._id,
+  }).populate("listing");
+
+  res.render("users/bookings", { bookings });
 });
 
 // Edit Profile

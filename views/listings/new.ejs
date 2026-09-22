@@ -129,6 +129,10 @@
 
 <script>
   document.getElementById("generateDesc").addEventListener("click", async () => {
+    const button=document.getElementById("generateDesc");
+    // Disable button while AI is generating
+    button.disabled = true;
+    button.innerText = "Generating...";
   
     const title = document.querySelector('[name="listing[title]"]').value;
     const location = document.querySelector('[name="listing[location]"]').value;
@@ -142,8 +146,15 @@
     });
   
     const data = await res.json();
-  
+
+    if (!res.ok) {
+      alert(data.error);
+      return;
+    }
     document.querySelector('[name="listing[description]"]').value =
-      data.description;
+    data.description;
+    // Enable button again
+    button.disabled = false;
+    button.innerText = "✨ Generate Description";
   });
   </script>
