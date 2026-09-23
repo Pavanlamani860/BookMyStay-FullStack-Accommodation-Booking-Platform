@@ -95,6 +95,11 @@ router.get(
       return res.redirect("/listings");
     }
 
+    if (!booking.user.equals(req.user._id)) {
+      req.flash("error", "You are not authorized");
+      return res.redirect("/listings");
+    }
+
     res.render("bookings/payment.ejs", { booking });
   }),
 );

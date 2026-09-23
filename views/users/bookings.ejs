@@ -75,20 +75,41 @@
 
               <!-- Payment Status -->
               <% if (booking.paymentStatus === "paid") { %>
+
                 <span class="badge bg-success">
                   Payment Paid
                 </span>
-
+              
               <% } else if (booking.paymentStatus === "pending") { %>
+              
                 <span class="badge bg-warning text-dark">
                   Payment Pending
                 </span>
-
+              
+                <div class="mt-3">
+                  <a
+                    href="/bookings/<%= booking._id %>/payment"
+                    class="btn btn-success btn-sm w-100"
+                  >
+                    Pay Now
+                  </a>
+                </div>
+              
               <% } else { %>
+              
                 <span class="badge bg-danger">
                   Payment Failed
                 </span>
-
+              
+                <div class="mt-3">
+                  <a
+                    href="/bookings/<%= booking._id %>/payment"
+                    class="btn btn-outline-danger btn-sm w-100"
+                  >
+                    Try Payment Again
+                  </a>
+                </div>
+              
               <% } %>
 
               <!-- Booking Status -->
